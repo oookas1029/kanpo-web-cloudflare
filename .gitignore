@@ -20,5 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Cloudflare Wrangler files
+.wrangler/
+.wrangler
+
 # jetbrains setting folder
 .idea/
