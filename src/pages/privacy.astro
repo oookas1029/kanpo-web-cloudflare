@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/ui';
+
+const t = useTranslations('ja');
+---
+
+<Layout title="プライバシーポリシー・免責事項 | Kampo Medicine">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-8">プライバシーポリシー・免責事項</h1>
+    
+    <div class="prose prose-purple max-w-none text-gray-700 space-y-8">
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">1. 免責事項（Medical Disclaimer）</h2>
+        <p>本ウェブサイト（Kampo Medicine）で提供される情報（漢方薬、論文、分子生物学、腸内フローラ、栄養学等の解説を含む）は、一般的な学習および情報提供のみを目的としており、<strong>医師や専門家による医学的診断、治療のアドバイス、処方を代替するものではありません。</strong></p>
+        <p>症状に関する不安がある場合、または漢方薬の服用・治療法の選択にあたっては、必ずかかりつけの医師、薬剤師、登録販売者等の専門家にご相談ください。本サイトの情報を利用したことによって生じたいかなる損害・健康被害についても、運営者は一切の責任を負いかねます。</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">2. 情報の正確性について</h2>
+        <p>当サイトのコンテンツや情報は、可能な限り正確な情報を掲載（最新の論文やエビデンスに基づく解説）するよう努めておりますが、必ずしもその正確性や安全性を保証するものではありません。医療や科学技術の進歩により、過去の記述が必ずしも最新の見解と一致しない場合があります。</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">3. 個人情報の収集と利用</h2>
+        <p>当サイトにおいて、お問い合わせ等で取得したお名前やメールアドレス等の個人情報は、ご質問に対する回答や必要な情報を電子メール等でご連絡する場合にのみ利用いたします。これらの目的以外では利用いたしません。</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">4. アクセス解析ツールについて</h2>
+        <p>当サイトでは、サービスの向上とサイトの計測のためにGoogleが提供するアクセス解析ツール（Google Analytics等）を利用する場合があります。これらはトラフィックデータの収集のためにCookieを使用しています。トラフィックデータは匿名で収集されており、個人を特定するものではありません。Cookieを無効にすることで収集を拒否することができますので、お使いのブラウザの設定をご確認ください。</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">5. 著作権・肖像権</h2>
+        <p>当サイトで掲載している文章や画像などにつきましては、無断転載することを禁止します。当サイトは著作権や肖像権の侵害を目的としたものではありません。著作権や肖像権に関して問題がございましたら、お問い合わせフォームよりご連絡ください。迅速に対応いたします。</p>
+      </section>
+      
+      <div class="mt-12 pt-8 border-t text-sm text-gray-500">
+        最終更新日: 2026年3月
+      </div>
+    </div>
+  </div>
+</Layout>

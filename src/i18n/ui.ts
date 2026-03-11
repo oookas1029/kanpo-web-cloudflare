@@ -20,6 +20,8 @@ export const ui = {
         'hero.button.research': 'Research Evidence',
         'hero.button.symptoms': 'Search by Symptoms',
         'category.label': 'Categories',
+        'nav.contact': 'Contact Us',
+        'nav.privacy': 'Privacy Policy',
     },
     ja: {
         'nav.home': 'ホーム',
@@ -35,6 +37,8 @@ export const ui = {
         'hero.button.research': '科学的根拠（エビデンス）',
         'hero.button.symptoms': '慢性症状から探す',
         'category.label': '関連カテゴリ',
+        'nav.contact': 'お問い合わせ',
+        'nav.privacy': 'プライバシーポリシー・免責事項',
     },
 } as const;
 
