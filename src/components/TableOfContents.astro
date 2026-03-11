@@ -1,0 +1,49 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  title?: string;
+}
+
+const { headings, title = "目次" } = Astro.props;
+
+// Filter out h1 (typically the main title) and anything deeper than h3 for a cleaner TOC
+const filteredHeadings = headings.filter((h) => h.depth > 1 && h.depth <= 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <nav class="bg-gray-50 border border-gray-100 rounded-xl p-6 mb-10 w-full max-w-sm">
+    <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-gray-500">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
+      {title}
+    </h2>
+    <ul class="space-y-3">
+      {filteredHeadings.map((heading) => (
+        <li class={`leading-tight ${heading.depth === 3 ? 'ml-4' : ''}`}>
+          <a
+            href={`#${heading.slug}`}
+            class={`inline-block w-full transition-colors ${
+              heading.depth === 2 
+                ? 'text-gray-700 font-medium hover:text-blue-600' 
+                : 'text-gray-500 text-sm hover:text-blue-600'
+            }`}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

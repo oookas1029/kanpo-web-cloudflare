@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import { useTranslations } from '../../i18n/ui';
 
 export async function getStaticPaths() {
@@ -12,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { symptom } = Astro.props;
-const { Content } = await render(symptom);
+const { Content, headings } = await render(symptom);
 const t = useTranslations('ja');
 
 const allResearch = await getCollection('research', ({ id }) => id.startsWith('ja/'));
@@ -45,6 +46,8 @@ const relatedResearch = allResearch.filter(r => r.data.symptoms.includes(symptom
       </div>
       <p class="text-xl text-gray-600 leading-relaxed">{symptom.data.description}</p>
     </header>
+
+    <TableOfContents headings={headings} />
 
     <div class="prose prose-lg prose-blue max-w-none mb-16">
       <Content />
