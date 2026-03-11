@@ -2,6 +2,7 @@
 title: "Stiff Shoulders (Katakori)"
 description: "A symptom where muscles from the neck to the shoulders and back feel stiff and heavy. It is often triggered by desk work, stress, or eye strain, leading to poor blood circulation."
 image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["Mitochondria / Metabolism","Preventive Medicine / Mibyou"]
 ---
 
 ## Mechanism of Stiff Shoulders and the Kampo Approach

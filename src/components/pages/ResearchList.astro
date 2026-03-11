@@ -49,6 +49,11 @@ const researchList = allResearch.filter(research => research.id.startsWith(`${la
                 </div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">{research.data.title}</h2>
                 <div class="flex flex-wrap gap-2 mb-4">
+                  {research.data.categories && research.data.categories.map(cat => (
+                    <span class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium bg-purple-50 text-purple-700 border border-purple-200">
+                      {cat}
+                    </span>
+                  ))}
                   {research.data.kampo.map(k => (
                     <span class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium bg-green-50 text-green-700 border border-green-200">
                       {k}

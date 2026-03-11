@@ -6,6 +6,7 @@ kampo: ["当帰芍薬散", "桂枝茯苓丸"]
 evidenceLevel: "High"
 date: 2023-10-15
 image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["ミトコンドリア・エネルギー代謝","分子栄養学"]
 ---
 
 ## 論文概要

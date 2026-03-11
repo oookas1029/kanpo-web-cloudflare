@@ -6,6 +6,7 @@ kampo: ["葛根湯", "芍薬甘草湯"]
 evidenceLevel: "Medium"
 date: 2022-05-10
 image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["ミトコンドリア・エネルギー代謝"]
 ---
 
 ## 論文概要

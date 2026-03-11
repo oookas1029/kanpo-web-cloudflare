@@ -2,6 +2,7 @@
 title: "不眠症"
 description: "寝つきが悪い、途中で目が覚める、朝早く目が覚めてしまうなど、睡眠に関する悩みの総称です。心身の疲労や過度なストレスが原因となることが多いです。"
 image: "https://images.unsplash.com/photo-1541845157-a6d2d100c931?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["自律神経・ストレス", "未病・予防医学"]
 ---
 
 ## 不眠症の漢方的解釈

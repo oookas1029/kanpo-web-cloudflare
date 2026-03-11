@@ -2,6 +2,7 @@
 title: "肩こり"
 description: "首から肩、背中にかけての筋肉がこわばって重く感じる症状です。デスクワークやストレス、眼精疲労などが引き金となり、血流が悪化することで引き起こされます。"
 image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["ミトコンドリア・エネルギー代謝","未病・予防医学"]
 ---
 
 ## 肩こりのメカニズムと漢方のアプローチ

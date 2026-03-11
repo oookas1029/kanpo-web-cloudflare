@@ -7,6 +7,7 @@ const symptoms = defineCollection({
         title: z.string(),
         description: z.string(),
         image: z.string().optional(),
+        categories: z.array(z.string()).optional(),
     }),
 });
 
@@ -20,6 +21,7 @@ const research = defineCollection({
         evidenceLevel: z.string().optional(),
         date: z.date().optional(),
         image: z.string().optional(),
+        categories: z.array(z.string()).optional(),
     }),
 });
 

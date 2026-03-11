@@ -2,6 +2,7 @@
 title: "Cold Sensitivity (Hiesho)"
 description: "A condition where hands, feet, or the entire body feel abnormally cold, often caused by poor circulation or autonomic nervous system imbalance. Kampo aims to improve this by balancing 'Qi, Blood, and Water'."
 image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["Mitochondria / Metabolism","Intestinal Flora / Microbiome"]
 ---
 
 ## Differences between Western and Eastern Medicine regarding Cold Sensitivity

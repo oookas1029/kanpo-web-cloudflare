@@ -36,6 +36,13 @@ const relatedResearch = allResearch.filter(r => r.data.symptoms.includes(symptom
         </div>
       )}
       <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">{symptom.data.title}</h1>
+      <div class="flex flex-wrap gap-2 mb-6">
+        {symptom.data.categories && symptom.data.categories.map(cat => (
+          <span class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium bg-purple-50 text-purple-700 border border-purple-200">
+            {cat}
+          </span>
+        ))}
+      </div>
       <p class="text-xl text-gray-600 leading-relaxed">{symptom.data.description}</p>
     </header>
 

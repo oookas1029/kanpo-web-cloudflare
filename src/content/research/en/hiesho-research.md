@@ -6,6 +6,7 @@ kampo: ["Tokishakuyakusan", "Keishibukuryogan"]
 evidenceLevel: "High"
 date: 2023-10-15
 image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["Mitochondria / Metabolism","Molecular Nutrition / Orthomolecular"]
 ---
 
 ## Summary of the Study

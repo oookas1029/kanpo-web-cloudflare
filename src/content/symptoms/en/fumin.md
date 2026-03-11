@@ -2,6 +2,7 @@
 title: "Insomnia (Fumin)"
 description: "A general term for sleep problems, such as difficulty falling asleep, waking up during the night, or waking up too early in the morning. Often caused by mental/physical fatigue or excessive stress."
 image: "https://images.unsplash.com/photo-1541845157-a6d2d100c931?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["Autonomic Nervous System / Stress","Preventive Medicine / Mibyou"]
 ---
 
 ## Kampo Interpretation of Insomnia

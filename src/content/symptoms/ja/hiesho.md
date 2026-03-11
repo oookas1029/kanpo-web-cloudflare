@@ -2,6 +2,7 @@
 title: "冷え性"
 description: "手足や全身が冷たく感じる症状で、血行不良や自律神経の乱れが原因となることが多いです。漢方では「気・血・水」のバランスを整えることで改善を目指します。"
 image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["ミトコンドリア・エネルギー代謝", "腸内フローラ・腸活"]
 ---
 
 ## 冷え性の西洋医学と東洋医学の違い

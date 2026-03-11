@@ -6,6 +6,7 @@ kampo: ["Sansohninto"]
 evidenceLevel: "High"
 date: 2024-01-22
 image: "https://images.unsplash.com/photo-1541845157-a6d2d100c931?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+categories: ["Autonomic Nervous System / Stress","Molecular Nutrition / Orthomolecular"]
 ---
 
 ## Summary of the Study
