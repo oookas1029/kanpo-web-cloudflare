@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  imageAlt: string;
+  imageSrc: string;
+}
+
+const { title, description, href, imageAlt, imageSrc } = Astro.props;
+---
+
+<a href={href} class="group block h-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+  <div class="relative h-64 w-full overflow-hidden">
+    <img 
+      src={imageSrc} 
+      alt={imageAlt}
+      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+    />
+  </div>
+  <div class="p-8 flex flex-col h-full">
+    <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center">
+      <slot name="icon" />
+      <span class="ml-2">{title}</span>
+    </h3>
+    <p class="text-gray-600 leading-relaxed mb-6 flex-grow">
+      {description}
+    </p>
+    <div class="inline-flex w-full items-center justify-center px-6 py-3 border border-gray-200 text-sm font-medium rounded-full text-gray-900 bg-white hover:bg-gray-50 transition-colors">
+      Learn More
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
+      </svg>
+    </div>
+  </div>
+</a>

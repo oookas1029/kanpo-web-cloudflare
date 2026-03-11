@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  lang: 'ja' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Get all research articles and filter by the current language
+const allResearch = await getCollection('research');
+const researchList = allResearch.filter(research => research.id.startsWith(`${lang}/`));
+---
+
+<Layout title={`${t('nav.research')} | Kampo Medicine`}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="mb-12">
+      <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">{t('nav.research')}</h1>
+      <p class="mt-4 text-xl text-gray-600 max-w-2xl">{t('card.research.desc')}</p>
+    </div>
+
+    <div class="space-y-8">
+      {researchList.map(research => {
+        // Remove lang prefix from id to get the clean slug
+        const slug = research.id.replace(`${lang}/`, '');
+        return (
+          <a href={`/${lang === 'ja' ? '' : lang + '/'}research/${slug}`} class="group flex flex-col sm:flex-row bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+            {research.data.image && (
+              <div class="w-full sm:w-1/3 md:w-1/4 shrink-0 h-48 sm:h-auto relative overflow-hidden bg-gray-100">
+                <img src={research.data.image} alt={research.data.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              </div>
+            )}
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 p-8 flex-grow">
+              <div class="flex-grow">
+                <div class="flex items-center gap-3 mb-3">
+                  {research.data.evidenceLevel && (
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      Evidence: {research.data.evidenceLevel}
+                    </span>
+                  )}
+                  {research.data.date && (
+                    <span class="text-sm text-gray-500">
+                      {new Date(research.data.date).toLocaleDateString(lang === 'ja' ? 'ja-JP' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </span>
+                  )}
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">{research.data.title}</h2>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {research.data.kampo.map(k => (
+                    <span class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium bg-green-50 text-green-700 border border-green-200">
+                      {k}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              <div class="shrink-0 flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 mt-4 md:mt-0">
+                {t('button.learnMore')}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</Layout>

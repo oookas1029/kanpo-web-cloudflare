@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
+  --color-primary: #111827;
+  --color-secondary: #4B5563;
+  --color-accent: #f3f4f6;
+  --color-border: #e5e7eb;
+}
+
+@layer base {
+  body {
+    @apply text-gray-900 bg-gray-50 antialiased font-sans;
+  }
+}

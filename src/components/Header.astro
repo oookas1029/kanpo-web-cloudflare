@@ -1,0 +1,66 @@
+---
+import { getLangFromUrl, useTranslations, defaultLang } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const currentPath = Astro.url.pathname;
+// Remove the current language prefix to get the base path
+const basePath = currentPath.replace(new RegExp(`^\\/${lang}\\/`), '/').replace(new RegExp(`^\\/${lang}$`), '/') || '/';
+
+const getLocalizedPath = (targetLang: string, path: string) => {
+  if (targetLang === defaultLang) {
+    return path;
+  }
+  return `/${targetLang}${path === '/' ? '' : path}`;
+};
+---
+
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      {/* Logo */}
+      <div class="flex-shrink-0 flex items-center">
+        <a href={getLocalizedPath(lang, '/')} class="text-xl font-bold text-gray-900 tracking-tight">
+          Kampo Medicine
+        </a>
+      </div>
+
+      {/* Navigation */}
+      <nav class="hidden md:flex space-x-8">
+        <a href={getLocalizedPath(lang, '/')} class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+          {t('nav.home')}
+        </a>
+        <a href={getLocalizedPath(lang, '/research')} class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+          {t('nav.research')}
+        </a>
+        <a href={getLocalizedPath(lang, '/symptoms')} class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+          {t('nav.symptoms')}
+        </a>
+      </nav>
+
+      {/* Language Switcher */}
+      <div class="flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <div class="flex items-center bg-gray-100 rounded-full p-1 border border-gray-200">
+          <a
+            href={getLocalizedPath('en', basePath)}
+            class={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${lang === 'en' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:text-gray-900'}`}
+          >
+            EN
+          </a>
+          <a
+            href={getLocalizedPath('ja', basePath)}
+            class={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${lang === 'ja' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:text-gray-900'}`}
+          >
+            日本語
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/ui';
+
+interface Props {
+  lang: 'ja' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Get all symptoms and filter by the current language
+const allSymptoms = await getCollection('symptoms');
+const symptoms = allSymptoms.filter(symptom => symptom.id.startsWith(`${lang}/`));
+---
+
+<Layout title={`${t('nav.symptoms')} | Kampo Medicine`}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="mb-12">
+      <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">{t('nav.symptoms')}</h1>
+      <p class="mt-4 text-xl text-gray-600 max-w-2xl">{t('card.symptoms.desc')}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {symptoms.map(symptom => {
+        // Remove lang prefix from id to get the clean slug. e.g. "ja/hiesho" -> "hiesho"
+        const slug = symptom.id.replace(`${lang}/`, '');
+        return (
+          <a href={`/${lang === 'ja' ? '' : lang + '/'}symptoms/${slug}`} class="group flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+            {symptom.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img src={symptom.data.image} alt={symptom.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              </div>
+            )}
+            <div class="p-6 flex-grow flex flex-col">
+              <h2 class="text-xl font-bold text-gray-900 mb-2">{symptom.data.title}</h2>
+              <p class="text-gray-600 line-clamp-3 mb-4 flex-grow">{symptom.data.description}</p>
+              <div class="mt-auto flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
+                {t('button.learnMore')}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</Layout>
