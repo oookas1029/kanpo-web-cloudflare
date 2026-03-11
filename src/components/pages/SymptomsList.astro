@@ -35,11 +35,11 @@ const symptoms = allSymptoms.filter(symptom => symptom.id.startsWith(`${lang}/`)
             )}
             <div class="p-6 flex-grow flex flex-col">
               <h2 class="text-xl font-bold text-gray-900 mb-2">{symptom.data.title}</h2>
-              <div class="flex flex-wrap gap-2 mb-3">
+              <div class="flex flex-wrap gap-2 mb-3 relative z-10">
                 {symptom.data.categories && symptom.data.categories.map(cat => (
-                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-50 text-purple-700 border border-purple-200">
+                  <a href={`/${lang === 'ja' ? '' : lang + '/'}categories/${cat}`} class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition-colors">
                     {cat}
-                  </span>
+                  </a>
                 ))}
               </div>
               <p class="text-gray-600 line-clamp-3 mb-4 flex-grow">{symptom.data.description}</p>

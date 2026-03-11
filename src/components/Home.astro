@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/ui';
+import { getCollection } from 'astro:content';
 
 interface Props {
   lang?: 'en' | 'ja';
@@ -11,15 +12,41 @@ interface Props {
 const overrideLang = Astro.props.lang;
 const lang = overrideLang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const allResearch = await getCollection('research', ({ id }) => id.startsWith(`${lang}/`));
+const recentResearch = allResearch
+  .sort((a, b) => new Date(b.data.date || 0).valueOf() - new Date(a.data.date || 0).valueOf())
+  .slice(0, 3);
 ---
 
 <Layout title="Kampo Medicine | Traditional Herbal Medicine">
   {/* Hero Section */}
   <section class="relative">
-    {/* Decorative background image (you can replace the src with actual herbs) */}
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Herbal Medicine Background" class="w-full h-[600px] object-cover brightness-[0.35]" />
+    {/* Decorative background image slider */}
+    <div class="absolute inset-0 z-0 bg-gray-900" id="hero-slider">
+      <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Herbal Medicine" class="slider-img absolute inset-0 w-full h-[600px] object-cover brightness-[0.35] opacity-100 transition-opacity duration-1000 ease-in-out" />
+      <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Microbiome Research" class="slider-img absolute inset-0 w-full h-[600px] object-cover brightness-[0.35] opacity-0 transition-opacity duration-1000 ease-in-out" />
+      <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Molecular Science" class="slider-img absolute inset-0 w-full h-[600px] object-cover brightness-[0.35] opacity-0 transition-opacity duration-1000 ease-in-out" />
     </div>
+    
+    <script>
+      // Client-side image slider logic
+      document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.slider-img');
+        if (images.length === 0) return;
+        
+        let currentIndex = 0;
+        setInterval(() => {
+          images[currentIndex].classList.remove('opacity-100');
+          images[currentIndex].classList.add('opacity-0');
+          
+          currentIndex = (currentIndex + 1) % images.length;
+          
+          images[currentIndex].classList.remove('opacity-0');
+          images[currentIndex].classList.add('opacity-100');
+        }, 5000); // Change image every 5 seconds
+      });
+    </script>
     
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-40 text-center">
       <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-8 drop-shadow-lg leading-tight">
@@ -76,4 +103,51 @@ const t = useTranslations(lang);
       </Card>
     </div>
   </section>
+
+  {/* Recent Posts Section */}
+  {recentResearch.length > 0 && (
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="flex items-center justify-between mb-8 border-b pb-4">
+        <h2 class="text-3xl font-bold text-gray-900 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-blue-600"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          {lang === 'ja' ? '最近の更新（論文・研究）' : 'Recent Updates & Research'}
+        </h2>
+        <a href={`/${lang === 'ja' ? '' : lang + '/'}research`} class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
+          {lang === 'ja' ? 'すべて見る &rarr;' : 'View All &rarr;'}
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {recentResearch.map(item => (
+          <a href={`/${lang === 'ja' ? '' : lang + '/'}research/${item.id.replace(`${lang}/`, '')}`} class="group flex flex-col bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
+            {item.data.image && (
+              <div class="h-40 relative overflow-hidden bg-gray-100">
+                <img src={item.data.image} alt={item.data.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              </div>
+            )}
+            <div class="p-5 flex-grow flex flex-col">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-gray-500 font-medium">
+                  {item.data.date ? new Date(item.data.date).toLocaleDateString(lang === 'ja' ? 'ja-JP' : 'en-US') : ''}
+                </span>
+                {item.data.categories && item.data.categories.length > 0 && (
+                  <span class="text-xs font-medium text-purple-600 bg-purple-50 px-2 py-0.5 rounded">
+                    {item.data.categories[0]}
+                  </span>
+                )}
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">{item.data.title}</h3>
+              <div class="mt-auto flex flex-wrap gap-1">
+                {item.data.kampo.slice(0, 2).map(k => (
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-200">
+                    {k}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 </Layout>

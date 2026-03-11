@@ -37,9 +37,9 @@ const relatedSymptoms = allSymptoms.filter(s => research.data.symptoms.includes(
       )}
       <div class="flex flex-wrap items-center gap-3 mb-4">
         {research.data.categories && research.data.categories.map(cat => (
-          <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-50 text-purple-700 border border-purple-200">
+          <a href={`/en/categories/${cat}`} class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition-colors">
             {cat}
-          </span>
+          </a>
         ))}
         {research.data.evidenceLevel && (
           <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
